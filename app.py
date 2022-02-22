@@ -114,10 +114,6 @@ try:
     client.execute('SET max_partitions_per_insert_block=5000')
     client.execute('INSERT INTO  NewsAPIArticlesExportDB VALUES',export_articles)
     client.execute('INSERT INTO  NewsAPISources VALUES',sources)
-    client.execute('ALTER TABLE NewsAPISources DELETE WHERE 1=1')
-    client.execute('ALTER TABLE NewsAPIArticlesExportDB DELETE WHERE 1=1')
-    client.execute('SET max_partitions_per_insert_block=5000')
-    client.execute('INSERT INTO  NewsAPISources VALUES',sources)
     run_sql_simple_query = client.execute(
         'Select NewsAPIArticlesExportDB.*,NewsAPISources.* from NewsAPIArticlesExportDB LEFT OUTER JOIN NewsAPISources ON NewsAPIArticlesExportDB.id = NewsAPISources.id',with_column_types=True
     )
